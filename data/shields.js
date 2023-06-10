@@ -1,0 +1,80 @@
+var shields = [
+    {
+        name: "Wood Shield",
+        armour: 6,
+        parry: 1.5,
+        tiers: 3,
+    },
+    {
+        name: "Wood Tower Shield",
+        armour: 10,
+        parry: 1,
+        tiers: 3,
+    },
+    {
+        name: "Bone Tower Shield",
+        armour: 32,
+        parry: 1,
+        tiers: 3,
+    },
+    {
+        name: "Bronze Buckler",
+        armour: 16,
+        parry: 2.5,
+        tiers: 3,
+    },
+    {
+        name: "Iron Buckler",
+        armour: 28,
+        parry: 2.5,
+        tiers: 3,
+    },
+    {
+        name: "Banded Shield",
+        armour: 42,
+        parry: 1.5,
+        tiers: 3,
+    },
+    {
+        name: "Iron Tower Shield",
+        armour: 52,
+        parry: 1,
+        tiers: 3,
+    },
+    {
+        name: "Silver Shield",
+        armour: 60,
+        parry: 1.5,
+        tiers: 3,
+    },
+    {
+        name: "Serpent Scale Shield",
+        armour: 60,
+        parry: 1,
+        tiers: 3,
+    },
+    {
+        name: "Black Metal Shield",
+        armour: 78,
+        parry: 1.5,
+        tiers: 3,
+    },
+    {
+        name: "Black Metal Tower Shield",
+        armour: 104,
+        parry: 1,
+        tiers: 3,
+    },
+    {
+        name: "Carapace Buckler",
+        armour: 78,
+        parry: 2.5,
+        tiers: 2,
+    },
+    {
+        name: "Carapace Shield",
+        armour: 96,
+        parry: 1.5,
+        tiers: 2,
+    },
+];

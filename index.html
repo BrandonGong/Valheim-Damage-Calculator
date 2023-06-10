@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon"
+        href="data:image/vnd.microsoft.icon;base64,AAABAAEAEBAAAAAAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAQEA4VldYx2RkZsNoZWVsAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJigobA84afsFIUH+W2FouFVVVQkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAzdJXJ0LSpT+JEt3/0lWZdtkZGQcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAERERA88V3PHE0eD/maazv81Rlvxb29zPgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMTEwoME9y5Qs0ZP9tn87/JT5a+31/f2oAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARUVFThU8a/YPN2b/X4q1/yZIbv6HjI2bVVVVAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEdHR34XSoT8Hjpc91R6oPUkT37+d3+FxW1tbQ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFVVKgZFRkiuEEaF/ic7Ut1SbIjUQnSn/l9seuSUlJQmAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABZWVkXR1Rh1Stbkf4/T2K7UGJ2r0J+wP5JWm31n5+fTQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAUFBQNiw/Vu0WP3D+VWFvmFRdZI9gn9/9OExj/KCionwAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAElJSWEZPWb5DzVi/HR7gnReXFxyWpbS/DZSc/6kpaSrf39/BgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJFRUaRE0N3/Rg2W/eGhoxSZGRhV1aEs/knSHD/oaKj0pKSkhUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABGRkYLO0JKvhJCeP4jOFDuc3h9NXFtbT9BZYvyHUl7/2Vsc+yKiooyAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARkZGITFEWd8/cKj/NkZa3mZubh5ubm4sSWiJ6UV6tP9NW234iIiFXAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAElJSThJUlrdZoeo9EdVZcVVVVUPXl5eG0xTXNpjfJj7U19s8GxsaHsAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAFDQ0MqQ0NDZ0ZMT4pOTlFSAAAAAl1dXTdUVFSyUlJSnFpXV2xgYFggAAAAAAAAAAAAAAAA/n8AAP4/AAD8PwAA/D8AAPw/AAD8HwAA/B8AAPgfAAD4HwAA+B8AAPmPAADxjwAA8Y8AAPGPAADxjwAA+58=">
+    <title>Valheim Damage Calculator</title>
+    <!-- Boostrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <!-- Style -->
+    <link href="./css/site.css" rel="stylesheet">
+
+
+    <!-- Data Sets -->
+    <script src="./data/armours.js"></script>
+    <script src="./data/shields.js"></script>
+    <script src="./data/creatures.js"></script>
+    <script src="./data/foods.js"></script>
+
+    <!-- Functionallity -->
+    <script src="./js/main.js"></script>
+</head>
+
+<body onload="LoadBody()">
+    <div class="container text-center">
+        <h1 class="bd-title">Valheim Damage Calculator</h1>
+        <hr />
+        <!-- Input Values -->
+        <div class="row">
+            <div class="col">
+                <label class="form-label"> Food </label>
+                <select class="form-select food_select" onchange="UpdateHealthValue()"></select>
+                <select class="form-select food_select" onchange="UpdateHealthValue()"></select>
+                <select class="form-select food_select" onchange="UpdateHealthValue()"></select>
+                <span>Health: <span id="health">25</span></span>
+                <br />
+                <span>Stamina: <span id="stamina">50</span></span>
+            </div>
+            <div class="col">
+                <label class="form-label">Armour</label>
+                <input id="armour" type="number" class="form-control" min="0" onchange="UpdateValues()" />
+                <label class="form-label">Head
+                    <div class="row">
+                        <div class="col">
+                            <select id="head_armour" class="form-select armour_select"
+                                onchange="UpdateArmourValue()"></select>
+                        </div>
+                        <div class="col">
+                            <input id="head_tier" type="number" class="form-control" min="0" max="4"
+                                onchange="UpdateArmourValue()" />
+                        </div>
+                    </div>
+                </label>
+                <label class="form-label">Body
+                    <div class="row">
+                        <div class="col">
+                            <select id="body_armour" class="form-select armour_select"
+                                onchange="UpdateArmourValue()"></select>
+                        </div>
+                        <div class="col">
+                            <input id="body_tier" type="number" class="form-control" min="0" max="4"
+                                onchange="UpdateArmourValue()" />
+                        </div>
+                    </div>
+                </label>
+                <label class="form-label">Legs
+                    <div class="row">
+                        <div class="col">
+                            <select id="leg_armour" class="form-select armour_select"
+                                onchange="UpdateArmourValue()"></select>
+                        </div>
+                        <div class="col">
+                            <input id="leg_tier" type="number" class="form-control" min="0" max="4"
+                                onchange="UpdateArmourValue()" />
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <div class="col">
+                <label class="form-label">Block Armour</label>
+                <input id="block_armour" type="number" class="form-control" min="0" onchange="UpdateValues()" />
+                <label class="form-label"> Shield </label>
+                <div class="row">
+                    <div class="col-8">
+                        <select id="shield_equipped" class="form-select shield_select"
+                            onchange="UpdateBlockArmourValue()"></select>
+                    </div>
+                    <div class="col-4">
+                        <input id="shield_tier_equipped" type="number" class="form-control" min="0" max="2"
+                            onchange="UpdateBlockArmourValue()" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="parry">Parry</label>
+                            <input id="parry" type="checkbox" class="form-check-input"
+                                onchange="UpdateBlockArmourValue()" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <label class="form-label"> Damage</label>
+                <input id="damage" type="number" class="form-control" min="0" onchange="UpdateValues()" />
+                <label class="form-label"> Creature</label>
+                <div class="row">
+                    <div class="col">
+                        <select id="creature_selected" class="form-select creature_select"
+                            onchange="UpdateCreatureDamageValue()"></select>
+                    </div>
+                    <div class="col">
+                        <input id="creature_stars" type="number" class="form-control" min="0" max="2"
+                            onchange="UpdateCreatureDamageValue()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-------------------->
+        <hr />
+        <!-- Damage Display -->
+        <div class="row">
+            <div class="col">
+                <h3>Unblocked Damage</h3>
+                <span id="unblocked_damage">Total damage if not blocked</span>
+                <br />
+                <span>Stagger: <span id="unblocked_stagger">0</span>%</span>
+            </div>
+            <div class="col">
+                <h3>Blocking Damage</h3>
+                <span id="blocked_damage">Damage if blocking</span>
+                <br />
+                <span>Stagger: <span id="blocked_stagger">0</span>%</span>
+                <br />
+                <span>Stamina Drain: <span id="stamina_drain">0</span></span>
+            </div>
+        </div>
+        <!-------------------->
+        <hr />
+        <!-- Informational Tables -->
+        <div class="row">
+            <h1>Data Tables</h1>
+            <div class="col">
+                <h3>Armour Sets</h3>
+
+                <label class="form-label">Tier</label>
+                <input id="armour_tier" type="number" class="form-control" min="0" max="4" />
+                <table class="table table-striped">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Armour Set</th>
+                            <th>Armour</th>
+                        </tr>
+                    </thead>
+                    <tbody id="armour_table"></tbody>
+                </table>
+            </div>
+            <div class="col">
+                <h3>Shields</h3>
+                <label class="form-label">Tier</label>
+                <input id="shield_tier" type="number" class="form-control" min="0" max="2" />
+                <div class="table-wrapper">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Shield</th>
+                                <th>Block Armour</th>
+                                <th>Parry Bonus</th>
+                            </tr>
+                        </thead>
+                        <tbody id="shields_table"></tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col">
+                <h3>Creatures</h3>
+                <label class="form-label">Stars</label>
+                <input id="creature_tier" type="number" class="form-control" min="0" max="2" />
+                <div class="table-wrapper">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Base HP</th>
+                                <th>Base Damage</th>
+                                <th>Weakness</th>
+                                <th>Resistance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="creatures_table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3>Food</h3>
+                <div class="table-wrapper">
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Name</th>
+                                <th>Health</th>
+                                <th>Stamina</th>
+                                <th>Ingredients</th>
+                                <th>Cooking Tool</th>
+                            </tr>
+                        </thead>
+                        <tbody id="food_table"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
