@@ -120,6 +120,8 @@ function UpdateArmourValue() {
     var tiers = ["head_tier", "body_tier", "leg_tier"];
     for (var i = 0; i < 3; i += 1) {
         var name = document.getElementById(fields[i]).value;
+        if (name == "") continue
+
         var armour_set = armours.find((item) => item.name == name);
         var tier = document.getElementById(tiers[i]).value;
 
@@ -133,6 +135,10 @@ function UpdateBlockArmourValue() {
     var block_armour = document.getElementById("block_armour");
 
     var name = document.getElementById("shield_equipped").value;
+    if (name == "") {
+        block_armour.value = 0
+        return
+    }
     var shield = shields.find((item) => item.name == name);
     var tier = document.getElementById("shield_tier_equipped").value;
 
@@ -150,6 +156,10 @@ function UpdateBlockArmourValue() {
 function UpdateCreatureDamageValue() {
     var damage = document.getElementById("damage");
     var name = document.getElementById("creature_selected").value;
+    if (name == "") {
+        damage.value = 0
+        return
+    }
     var creature = creatures.find((item) => item.name == name);
     var stars = document.getElementById("creature_stars").value;
 
@@ -187,9 +197,9 @@ function LoadBody() {
     SetFoodTable();
     // Init event handlers
     HanldeUserValueChanged();
-    SetComboBoxValues("armour_select", armours);
-    SetComboBoxValues("shield_select", shields);
-    SetComboBoxValues("creature_select", creatures);
+    SetComboBoxValues("armour_select", armours, true);
+    SetComboBoxValues("shield_select", shields, true);
+    SetComboBoxValues("creature_select", creatures, true);
     SetComboBoxValues("food_select", foods, true);
 
 }
