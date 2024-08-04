@@ -1,6 +1,8 @@
 # Valheim-Damage-Calculator
 A simple web tool for calculating damage done to player from creatures. Includes, food, armour, and blocking.
 
+[View on GitHub Pages](https://brandongong.github.io/Valheim-Damage-Calculator/)
+
 ## How to Use
 Start by selecting foods from the drop down lists. This will determine your maximum health, which has a direct factor on your stagger bar. 
 Armour can be selected from the drop downs along with their teir, or a custom value can be set. If you are using a shield, you may select
